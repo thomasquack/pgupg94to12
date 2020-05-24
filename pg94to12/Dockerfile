@@ -10,14 +10,14 @@ RUN apt-get -y update && \
 # Set Up Locales and Timezone
     locale-gen en_US en_US.UTF-8 && dpkg-reconfigure locales && \
     echo "Asia/Singapore" > /etc/timezone && dpkg-reconfigure --frontend noninteractive tzdata && \
-# Set Up postgres-12 & 9.6   
+# Set Up postgres-12 & 9.4
     wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - && \
     echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" | sudo tee  /etc/apt/sources.list.d/pgdg.list && \
     apt-get clean && \
     apt-get update && \
     apt-get -y upgrade && \
     apt-get clean && \
-    DEBIAN_FRONTEND=noninteractive apt-get -yq install postgresql-9.6 && \
+    DEBIAN_FRONTEND=noninteractive apt-get -yq install postgresql-9.4 && \
     apt-get clean &&\
     apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get -yq install postgresql-12 && \

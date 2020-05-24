@@ -2,25 +2,25 @@
 version: '3.7'
 
 volumes:
-  data96:
+  data94:
     driver_opts:
       type: none
-      device: /opt/pgupg96to12/volumes/data96
+      device: /opt/pgupg94to12/volumes/data94
       o: bind
   data12:
     driver_opts:
       type: none
-      device: /opt/pgupg96to12/volumes/data12
+      device: /opt/pgupg94to12/volumes/data12
       o: bind
 
 services:
   #Specify service
-  postgres96:
-    image: docker.io/library/postgres:9.6.18
+  postgres94:
+    image: docker.io/library/postgres:9.4
     environment:
      - POSTGRES_PASSWORD=23894idhfkasjdhkhioydifad
     volumes:
-     - data96:/var/lib/postgresql/data
+     - data94:/var/lib/postgresql/data
     ports:
      - 5432:5432
   postgres12:
@@ -32,10 +32,10 @@ services:
     ports:
      - 5431:5432
   postgres_upg:
-    image: pg96to12
-    build: pg96to12
+    image: pg94to12
+    build: pg94to12
     environment:
      - POSTGRES_PASSWORD=23894idhfkasjdhkhioydifad
     volumes:
-     - data96:/var/lib/postgresql/9.6/main
+     - data94:/var/lib/postgresql/9.4/main
      - data12:/var/lib/postgresql/12/main
